@@ -52,7 +52,7 @@ input {
 }
 
 #spot-container {
-	width: 650px;
+	width: 580px;
 	text-align: center;
 	margin: 60px auto;
 	background-color: yellow;
@@ -91,26 +91,27 @@ button {
 */
 
 .column-container {
-	width: 80px;
+	width: 70px;
 	display: inline-block;
 }
 
 .spot {
 	background-color: white;
-	height: 68px;
-	width: 68px;
+	height: 60px;
+	width: 60px;
 	border-radius: 100%;
+	box-shadow: 0 0 20px #808000;
 	border: 2px solid black;
 	display: inline-block;
 	margin: 5px;
 }
 
 .red {
-	background-color: red;
+	background-color: #FC4807;
 }
 
-.black {
-	background-color: black;
+.blue {
+	background-color: #07bbfc;
 }
 
 #game-outcome-container {

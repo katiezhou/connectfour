@@ -57,8 +57,8 @@ var $diags = [$diag0, $diag1, $diag2, $diag3, $diag4, $diag5, $diag6, $diag7, $d
 var $spots = $(".spot");
 
 var player;
-var player1 = "red";
-var player2 = "black";
+var player1;
+var player2;
 var totalMoves = 0;
 var $buttons = $("button");
 var $findColumn;
@@ -98,8 +98,8 @@ var initialize = function() {
 		for (var j = 0; j < $cols[i].length; j++) {
 			if ($($cols[i][j]).hasClass("red")) {
 				$($cols[i][j]).removeClass("red");
-			} else if ($($cols[i][j]).hasClass("black")) {
-				$($cols[i][j]).removeClass("black");
+			} else if ($($cols[i][j]).hasClass("blue")) {
+				$($cols[i][j]).removeClass("blue");
 			}
 		}
 	}
@@ -115,14 +115,14 @@ var rollDice = function() {
 	$($playerOrderContainer).show();
 	if (Math.random() < 0.5) {
 		player1 = "red";
-		player2 = "black";
+		player2 = "blue";
 		setTimeout(function() {
 			$($diceRollGif).hide();
 			$($playerOrder).html($player1Name + " goes first!")
 		}, 1500)
 		setTimeout(setGame, 3000)
 	} else if (Math.random() < 1) {
-		player1 = "black";
+		player1 = "blue";
 		player2 = "red";
 		setTimeout(function() {
 			$($diceRollGif).hide();
@@ -152,11 +152,11 @@ var placeLowestSpot = function() {
 	if (totalMoves % 2 === 0) {
 		player = "red";
 	} else if (totalMoves % 2 === 1) {
-		player = "black";
+		player = "blue";
 	}
 
 	for (var i = ($currentColumn.length - 1); i >= 0; i--) {
-		if (!($($currentColumn[i]).hasClass("red")) && !($($currentColumn[i]).hasClass("black"))) {
+		if (!($($currentColumn[i]).hasClass("red")) && !($($currentColumn[i]).hasClass("blue"))) {
 			lowestSpot = i;
 			$($currentColumn[i]).addClass(player);
 			totalMoves += 1;
