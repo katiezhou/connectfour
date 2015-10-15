@@ -1,33 +1,67 @@
+/*html {
+	background-image: 
+	linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), 
+	url(candycrushbackground.jpg);
+	background-repeat: no-repeat;
+    position: fixed;
+}*/
+
 body {
-	font-family: Futura;
+	/*font-family: Futura;*/
+	font-family: 'Candice';
+	background-image: 
+	linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), 
+	url(candycrushbackground.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+    background-attachment: fixed;
 }
+
+@font-face {
+	font-family:"Candice";
+	src:url("CANDY.eot?") format("eot"),url("CANDY.woff") format("woff"),url("CANDY.ttf") format("truetype"),url("CANDY.svg#Candice") format("svg");
+	font-weight:normal;
+	font-style:normal;
+}
+
 
 #header-container {
 	text-align: center;
 	margin: 0 auto;
 	height: 100px;
+	color: #ff2d95;
 }
 
-#header {
-	font-size: 80px;
-	font-weight: 800;
+#header1 {
+	text-align: center;
+	font-size: 120px;
+	text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #ff2d95, 0 0 10px #ff2d95, 0 0 20px #ff2d95, 0 0 30px #ff2d95, 0 0 40px #ff2d95; 
+}
+
+#header2 {
+	text-align: center;
+	font-size: 60px;
+	text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #ff2d95, 0 0 4px #ff2d95, 0 0 5px #ff2d95, 0 0 20px #ff2d95, 0 0 20px #ff2d95; 
+	margin-top: -20px;
 }
 
 #instructions {
 	font-size: 30px;
 	display: none;
+	color: #ff2d95;
 }
 
 #name-input-container {
 	text-align: center;
-	margin: 50px auto 0px auto;
+	margin: 110px auto 0px auto;
 }
 
 input {
 	height: 50px;
-	width: 300px;
-	font-family: Futura;
-	font-size: 20px;
+	width: 200px;
+	margin: 0 50px;
+	font-family: "Candice";
+	font-size: 25px;
 }
 
 #start-button-container {
@@ -36,26 +70,33 @@ input {
 }
 
 #start-button {
+	padding-right: 10px;
+	width: 200px;
 	height: 80px;
-	width: 180px;
 	font-size: 50px;
+	font-weight: normal;
 }
 
 #player-order-container {
-	font-size: 60px;
 	text-align: center;
-	margin: 50px auto 0px auto;
+	font-size: 60px;
+	margin: 120px auto 0px auto;
 }
 
 #dice-roll {
 	display: none;
 }
 
+#current-player {
+	text-align: center;
+	margin: 30px auto 0px auto;
+}
+
 #spot-container {
 	width: 580px;
 	text-align: center;
-	margin: 60px auto;
-	background-color: yellow;
+	margin: 150px auto 0px auto;
+	background-color: rgba(99, 134, 145, 0.9);
 	padding: 50px 0px 20px 0px;
 	border: 5px solid black;
 	display: none;
@@ -69,26 +110,19 @@ input {
 }
 
 button {
-	font-family: Futura;
+	font-family: "Candice";
 	font-size: 30px;
-	font-weight: 800;
+	color: white;
+	text-shadow: 0 0 3px #ff2d95, 0 0 3px #ff2d95, 0 0 3px #ff2d95, 0 0 3px #fff, 0 0 4px #fff, 0 0 5px #fff, 0 0 10px #fff, 0 0 10px #fff; 
+	background-color: #ff2d95;
 	height: 50px;
 	width: 50px;
 	border-radius: 5px;
-	border: none;
+	border: 3px solid white;
 	margin-top: -30px;
 	margin-bottom: 20px;
 	text-align: center;
 }
-
-/*#left-button {
-	margin-left: -5px;
-}
-
-#right-button {
-	margin-right: -5px;
-}
-*/
 
 .column-container {
 	width: 70px;
@@ -96,12 +130,12 @@ button {
 }
 
 .spot {
-	background-color: white;
 	height: 60px;
 	width: 60px;
+	background-color: #facade;
 	border-radius: 100%;
-	box-shadow: 0 0 20px #808000;
-	border: 2px solid black;
+	box-shadow: 0 0 20px #47646E;
+	border: 3px solid black;
 	display: inline-block;
 	margin: 5px;
 }
@@ -116,9 +150,8 @@ button {
 
 #game-outcome-container {
 	text-align: center;
-	margin: 50px auto;
+	margin: 100px auto 50px auto;
 	font-size: 80px;
-	font-weight: 800;
 }
 
 #play-again-container {
@@ -128,8 +161,9 @@ button {
 }
 
 #play-again {
-	height: 70px;
 	width: 200px;
-	font-size: 30px;
+	height: 70px;
+	font-size: 35px;
+	font-weight: normal;
 }
 
