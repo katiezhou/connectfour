@@ -78,8 +78,6 @@ input {
 	border-radius: 60px;
 	margin: 0 auto;
 	text-align: center;
-	padding-left: 10px;
-	padding-right: 10px;
 }
 
 #player-order-container {
@@ -139,6 +137,8 @@ input {
 }*/
 
 button {
+	padding-left: 10px;
+	padding-right: 10px;
 	font-family: "Candice";
 	font-size: 30px;
 	color: white;
@@ -166,7 +166,7 @@ button:hover {
 .spot {
 	height: 60px;
 	width: 60px;
-	background-color: #ffd5e9;
+	background-color: #e4ff7f;
 	border-radius: 100%;
 	box-shadow: 0 0 20px #47646E;
 	border: 2px solid black;
@@ -201,7 +201,7 @@ button:hover {
 }
 
 #play-again {
-	width: 200px;
+	width: 250px;
 	height: 70px;
 	font-size: 35px;
 	font-weight: normal;
