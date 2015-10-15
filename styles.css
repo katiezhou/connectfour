@@ -55,7 +55,7 @@ button {
 }
 */
 
-.column {
+.column-container {
 	width: 80px;
 	display: inline-block;
 }

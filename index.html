@@ -10,125 +10,92 @@
 		<div id="instructions">Click a button to drop your piece in that column.</div>
 	</div>
 	<div id="spot-container">
-		<!-- <div id="button-container">
-			<button id="left-button">&darr;</button>
-			
+		<div class="column-container">
 			<button>&darr;</button>
-			<button>&darr;</button>
-			<button>&darr;</button>
-			<button>&darr;</button>
-			<button id="right-button">&darr;</button>
-		</div> -->
-		<div class="column">
-			<button>&darr;</button>
-			<div class="spot"></div>
-			<div class="spot"></div>
-			<div class="spot"></div>
-			<div class="spot"></div>
-			<div class="spot"></div>
-			<div class="spot"></div>
+			<div class="column" id="col0">
+				<div class="spot row0 diag2"></div>
+				<div class="spot row1 diag1"></div>
+				<div class="spot row2 diag0"></div>
+				<div class="spot row3 diag11"></div>
+				<div class="spot row4 diag10"></div>
+				<div class="spot row5 diag9"></div>
+			</div>
 		</div>
-		<div class="column">
+		
+		<div class="column-container">
 			<button>&darr;</button>
-			<div class="spot"></div>
-			<div class="spot"></div>
-			<div class="spot"></div>
-			<div class="spot"></div>
-			<div class="spot"></div>
-			<div class="spot"></div>
+			<div class="column" id="col1">
+				<div class="spot row0 diag3"></div>
+				<div class="spot row1 diag2"></div>
+				<div class="spot row2 diag1 diag11"></div>
+				<div class="spot row3 diag0 diag10"></div>
+				<div class="spot row4 diag9"></div>
+				<div class="spot row5 diag8"></div>
+			</div>
 		</div>
-		<div class="column">
+		<div class="column-container">
 			<button>&darr;</button>
-			<div class="spot"></div>
-			<div class="spot"></div>
-			<div class="spot"></div>
-			<div class="spot"></div>
-			<div class="spot"></div>
-			<div class="spot"></div>
+			<div class="column" id="col2">
+				<div class="spot row0 diag4"></div>
+				<div class="spot row1 diag3 diag11"></div>
+				<div class="spot row2 diag2 diag10"></div>
+				<div class="spot row3 diag1 diag9"></div>
+				<div class="spot row4 diag0 diag8"></div>
+				<div class="spot row5 diag7"></div>
+			</div>
 		</div>
-		<div class="column">
+		
+		<div class="column-container">
 			<button>&darr;</button>
-			<div class="spot"></div>
-			<div class="spot"></div>
-			<div class="spot"></div>
-			<div class="spot"></div>
-			<div class="spot"></div>
-			<div class="spot"></div>
+			<div class="column" id="col3">
+				<div class="spot row0 diag5 diag11"></div>
+				<div class="spot row1 diag4 diag10"></div>
+				<div class="spot row2 diag3 diag9"></div>
+				<div class="spot row3 diag2 diag8"></div>
+				<div class="spot row4 diag1 diag7"></div>
+				<div class="spot row5 diag0 diag6"></div>
+			</div>
 		</div>
-		<div class="column">
+
+		<div class="column-container">
 			<button>&darr;</button>
-			<div class="spot"></div>
-			<div class="spot"></div>
-			<div class="spot"></div>
-			<div class="spot"></div>
-			<div class="spot"></div>
-			<div class="spot"></div>
+			<div class="column" id="col4">
+				<div class="spot row0 diag10"></div>
+				<div class="spot row1 diag5 diag9"></div>
+				<div class="spot row2 diag4 diag8"></div>
+				<div class="spot row3 diag3 diag7"></div>
+				<div class="spot row4 diag2 diag6"></div>
+				<div class="spot row5 diag1"></div>
+			</div>
 		</div>
-		<div class="column">
+		
+		<div class="column-container">
 			<button>&darr;</button>
-			<div class="spot"></div>
-			<div class="spot"></div>
-			<div class="spot"></div>
-			<div class="spot"></div>
-			<div class="spot"></div>
-			<div class="spot"></div>
+			<div class="column" id="col5">
+				<div class="spot row0 diag9"></div>
+				<div class="spot row1 diag8"></div>
+				<div class="spot row2 diag5 diag7"></div>
+				<div class="spot row3 diag4 diag6"></div>
+				<div class="spot row4 diag3"></div>
+				<div class="spot row5 diag2"></div>
+			</div>
 		</div>
-		<div class="column">
+		
+		<div class="column-container">
 			<button>&darr;</button>
-			<div class="spot"></div>
-			<div class="spot"></div>
-			<div class="spot"></div>
-			<div class="spot"></div>
-			<div class="spot"></div>
-			<div class="spot"></div>
+			<div class="column" id="col6">
+				<div class="spot row0 diag8"></div>
+				<div class="spot row1 diag7"></div>
+				<div class="spot row2 diag6"></div>
+				<div class="spot row3 diag5"></div>
+				<div class="spot row4 diag4"></div>
+				<div class="spot row5"></div>
+			</div>
 		</div>
 
 
 
-<!-- 
 
-		<div class="spot row0 col0 diag2" id="spot0"></div>
-		<div class="spot row0 col1 diag3" id="spot1"></div>
-		<div class="spot row0 col2 diag4" id="spot2"></div>
-		<div class="spot row0 col3 diag5 diag11" id="spot3"></div>
-		<div class="spot row0 col4 diag10" id="spot4"></div>
-		<div class="spot row0 col5 diag9" id="spot5"></div>
-		<div class="spot row0 col6 diag8" id="spot6"></div>
-		<div class="spot row1 col0 diag1" id="spot7"></div>
-		<div class="spot row1 col1 diag2" id="spot8"></div>
-		<div class="spot row1 col2 diag3 diag11" id="spot9"></div>
-		<div class="spot row1 col3 diag4 diag10" id="spot10"></div>
-		<div class="spot row1 col4 diag5 diag9" id="spot11"></div>
-		<div class="spot row1 col5 diag8" id="spot12"></div>
-		<div class="spot row1 col6 diag7" id="spot13"></div>
-		<div class="spot row2 col0 diag0" id="spot14"></div>
-		<div class="spot row2 col1 diag1 diag11" id="spot15"></div>
-		<div class="spot row2 col2 diag2 diag10" id="spot16"></div>
-		<div class="spot row2 col3 diag3 diag9" id="spot17"></div>
-		<div class="spot row2 col4 diag4 diag8" id="spot18"></div>
-		<div class="spot row2 col5 diag5 diag7" id="spot19"></div>
-		<div class="spot row2 col6 diag6" id="spot20"></div>
-		<div class="spot row3 col0 diag11" id="spot21"></div>
-		<div class="spot row3 col1 diag0 diag10" id="spot22"></div>
-		<div class="spot row3 col2 diag1 diag9" id="spot23"></div>
-		<div class="spot row3 col3 diag2 diag8" id="spot24"></div>
-		<div class="spot row3 col4 diag3 diag7" id="spot25"></div>
-		<div class="spot row3 col5 diag4 diag6" id="spot26"></div>
-		<div class="spot row3 col6 diag5" id="spot27"></div>
-		<div class="spot row4 col0 diag10" id="spot28"></div>
-		<div class="spot row4 col1 diag9" id="spot29"></div>
-		<div class="spot row4 col2 diag0 diag8" id="spot30"></div>
-		<div class="spot row4 col3 diag1 diag7" id="spot31"></div>
-		<div class="spot row4 col4 diag2 diag6" id="spot32"></div>
-		<div class="spot row4 col5 diag3" id="spot33"></div>
-		<div class="spot row4 col6 diag4" id="spot34"></div>
-		<div class="spot row5 col0 diag9" id="spot35"></div>
-		<div class="spot row5 col1 diag8" id="spot36"></div>
-		<div class="spot row5 col2 diag7" id="spot37"></div>
-		<div class="spot row5 col3 diag0 diag6" id="spot38"></div>
-		<div class="spot row5 col4 diag1" id="spot39"></div>
-		<div class="spot row5 col5 diag2" id="spot40"></div>
-		<div class="spot row5 col6 diag3" id="spot41"></div> -->
 	</div>
 	
 <script type="text/javascript" src="scripts.js"></script>
