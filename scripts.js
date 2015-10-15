@@ -68,13 +68,73 @@ var winner;
 var $gameOutcomeContainer = $("#game-outcome-container");
 var $gameOutcome = $("#game-outcome");
 var $spotContainer = $("#spot-container");
-
+var $instructions = $("#instructions");
+var $startButton = $("#start-button");
+var $startButtonContainer = $("#start-button-container");
+var $nameInputContainer = $("#name-input-container");
+var $player1Input = $("#player1-input");
+var $player2Input = $("#player2-input");
+var $player1Name;
+var $player2Name;
+var $playerOrderContainer = $("#player-order-container");
+var $playerOrder = $("#player-order");
+var $diceRollGif = $("#dice-roll");
 
 // ===========================
 // 					Functions
 // ===========================
 
-// allows game to alternate turns 
+var initialize = function() {
+	$($spotContainer).hide();
+	$($instructions).hide();
+	$($playerOrderContainer).hide();
+	winner = null;
+	for (var i = 0; i < $cols.length; i++) {
+		for (var j = 0; j < $cols[i].length; j++) {
+			if ($($cols[i][j]).hasClass("red")) {
+				$($cols[i][j]).removeClass("red");
+			} else if ($($cols[i][j]).hasClass("black")) {
+				$($cols[i][j]).removeClass("black");
+			}
+		}
+	}
+}
+
+var setGame = function() {
+	$($spotContainer).show();
+	$($instructions).show();
+	$($startButtonContainer).hide();
+	$($playerOrderContainer).hide();
+}
+
+var rollDice = function() {
+	$($diceRollGif).show();
+	$($startButtonContainer).hide();
+	$player1Name = $($player1Input).val();
+	$player2Name = $($player2Input).val();
+	$($nameInputContainer).hide();
+	$($playerOrderContainer).show();
+	if (Math.random() < 0.5) {
+		player1 = "red";
+		player2 = "black";
+		setTimeout(function() {
+			$($diceRollGif).hide();
+			$($playerOrder).html($player1Name + " goes first!")
+		}, 1500)
+		setTimeout(setGame, 3000)
+	} else if (Math.random() < 1) {
+		player1 = "black";
+		player2 = "red";
+		setTimeout(function() {
+			$($diceRollGif).hide();
+			$($playerOrder).html($player2Name + " goes first!")
+		}, 1500)
+		setTimeout(setGame, 3000)
+	}
+
+}
+
+
 
 
 var placeLowestSpot = function() {
@@ -105,10 +165,10 @@ var placeLowestSpot = function() {
 var checkForWin = function(array) {
 	for (var i = 0; i < array.length; i++) {
 		for (var j = 0; j < (array[i].length - 3); j++) {
-			if ($(array[i][j]).hasClass("red") && $(array[i][j+1]).hasClass("red") && $(array[i][j+2]).hasClass("red") && $(array[i][j+3]).hasClass("red")) {
-				winner = "red";
-			} else if ($(array[i][j]).hasClass("black") && $(array[i][j+1]).hasClass("black") && $(array[i][j+2]).hasClass("black") && $(array[i][j+3]).hasClass("black")) {
-				winner = "black";
+			if ($(array[i][j]).hasClass(player1) && $(array[i][j+1]).hasClass(player1) && $(array[i][j+2]).hasClass(player1) && $(array[i][j+3]).hasClass(player1)) {
+				winner = player1;
+			} else if ($(array[i][j]).hasClass(player2) && $(array[i][j+1]).hasClass(player2) && $(array[i][j+2]).hasClass(player2) && $(array[i][j+3]).hasClass(player2)) {
+				winner = player2;
 			} else if (totalMoves >= 42) {
 				winner = "none";
 			}
@@ -121,13 +181,16 @@ var checkForWin = function(array) {
 
 
 var showGameOutcome = function() {
-	if (winner === "red") {
-		$($gameOutcome).html("Red wins!");
+	if (winner === player1) {
+		$($instructions).hide();
+		$($gameOutcome).html($player1Name + " wins!");
 		$($spotContainer).fadeOut("slow");
-	} else if (winner === "black") {
-		$($gameOutcome).html("Black wins!");
+	} else if (winner === player2) {
+		$($instructions).hide();
+		$($gameOutcome).html($player2Name + " wins!");
 		$($spotContainer).fadeOut("slow");
 	} else if (winner === "none") {
+		$($instructions).hide();
 		$($gameOutcome).html("Draw!");
 		$($spotContainer).fadeOut("slow");
 	}
@@ -167,4 +230,6 @@ for (var i = 0; i < $buttons.length; i++) {
 	$($buttons[i]).click(placeLowestSpot);
 }
 
-// $(document).ready(initialize);
+$($startButton).click(rollDice);
+
+$(document).ready(initialize);
