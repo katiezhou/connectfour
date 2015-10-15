@@ -18,11 +18,6 @@ var gameboard = [null, null, null, null, null, null, null,
 
 
 
-
-// var $rows = [[], [], [], [], [], []];
-// var $cols = [[], [], [], [], [], [], []];
-// var $diags = [[], [], [], [], [], [], [], [], [], [], [], []];
-
 var $columns = $(".column");
 
 var $col0 = jQuery.makeArray($($("#col0")).children());
@@ -65,68 +60,111 @@ var player;
 var player1 = "red";
 var player2 = "black";
 var totalMoves = 0;
-var spotIndex;
 var $buttons = $("button");
 var $findColumn;
 var $currentColumn;
+var lowestSpot;
+var winner;
+var $gameOutcomeContainer = $("#game-outcome-container");
+var $gameOutcome = $("#game-outcome");
+var $spotContainer = $("#spot-container");
+
 
 // ===========================
 // 					Functions
 // ===========================
 
 // allows game to alternate turns 
-if (totalMoves % 2 === 0) {
-	player = player1;
-} else {
-	player = player2;
-}
 
-var checkLowestSpot = function() {
+
+var placeLowestSpot = function() {
 	$findColumn = $(this).siblings()[0];
-	$currentColumn = jQuery.makeArray($(findColumn).children());
+	$currentColumn = jQuery.makeArray($($findColumn).children());
+
+	// allows game to alternate turns for players
+	if (totalMoves % 2 === 0) {
+		player = "red";
+	} else if (totalMoves % 2 === 1) {
+		player = "black";
+	}
 
 	for (var i = ($currentColumn.length - 1); i >= 0; i--) {
 		if (!($($currentColumn[i]).hasClass("red")) && !($($currentColumn[i]).hasClass("black"))) {
-			$($currentColumn).addClass(player);
+			lowestSpot = i;
+			$($currentColumn[i]).addClass(player);
+			totalMoves += 1;
+
+			checkForWin($rows);
+			checkForWin($cols);
+			checkForWin($diags);
+			break;
 		}
 	}
-
 }
 
-
-
-var setSpotColor = function() {
-	$(this).addClass(player);
-}
-
-var setSpotIndex = function() {
-	spotIndex = $(this).index();
-}
-
-var iterating = function(array) {
+var checkForWin = function(array) {
 	for (var i = 0; i < array.length; i++) {
-		for (var j = 0; j < array[i].length; j++) {
-			console.log(array[i][j]);
+		for (var j = 0; j < (array[i].length - 3); j++) {
+			if ($(array[i][j]).hasClass("red") && $(array[i][j+1]).hasClass("red") && $(array[i][j+2]).hasClass("red") && $(array[i][j+3]).hasClass("red")) {
+				winner = "red";
+			} else if ($(array[i][j]).hasClass("black") && $(array[i][j+1]).hasClass("black") && $(array[i][j+2]).hasClass("black") && $(array[i][j+3]).hasClass("black")) {
+				winner = "black";
+			} else if (totalMoves >= 42) {
+				winner = "none";
+			}
 		}
+	}
+	if (winner != null) {
+		setTimeout(showGameOutcome, 200);
 	}
 }
 
 
-
-
-
-
-for (var i = 0; i < $spots.length; i++) {
-	$($spots[i]).click(setSpotColor);
-	$($spots[i]).click(setSpotIndex);
+var showGameOutcome = function() {
+	if (winner === "red") {
+		$($gameOutcome).html("Red wins!");
+		$($spotContainer).fadeOut("slow");
+	} else if (winner === "black") {
+		$($gameOutcome).html("Black wins!");
+		$($spotContainer).fadeOut("slow");
+	} else if (winner === "none") {
+		$($gameOutcome).html("Draw!");
+		$($spotContainer).fadeOut("slow");
+	}
 }
+
+// var setSpotColor = function() {
+// 	$(this).addClass(player);
+// }
+
+// var setSpotIndex = function() {
+// 	spotIndex = $(this).index();
+// }
+
+// var iterating = function(array) {
+// 	for (var i = 0; i < array.length; i++) {
+// 		for (var j = 0; j < array[i].length; j++) {
+// 			console.log(array[i][j]);
+// 		}
+// 	}
+// }
+
+
+
+
+
+
+// for (var i = 0; i < $spots.length; i++) {
+// 	$($spots[i]).click(setSpotColor);
+// 	$($spots[i]).click(setSpotIndex);
+// }
 
 
 // $($buttons[0]).siblings().children();
 
 
 for (var i = 0; i < $buttons.length; i++) {
-	$($buttons[i]).click(checkLowestSpot);
+	$($buttons[i]).click(placeLowestSpot);
 }
 
-
+// $(document).ready(initialize);

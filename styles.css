@@ -77,3 +77,11 @@ button {
 .black {
 	background-color: black;
 }
+
+#game-outcome-container {
+	text-align: center;
+	margin: 50px auto;
+	font-size: 80px;
+	font-weight: 800;
+}
+
