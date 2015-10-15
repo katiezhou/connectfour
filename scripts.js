@@ -147,8 +147,8 @@ var rollDice = function() {
 		setTimeout(function() {
 			$($playerOrder).html($player1Name + " goes first!");
 			$($diceRollGif).hide();
-		}, 1500)
-		setTimeout(setGame, 3000)
+		}, 2000)
+		setTimeout(setGame, 4000)
 	} else if (Math.random() < 1) {
 		player1Color = "green";
 		player2Color = "purple";
@@ -156,8 +156,8 @@ var rollDice = function() {
 		setTimeout(function() {
 			$($playerOrder).html($player2Name + " goes first!")
 			$($diceRollGif).hide();
-		}, 1500)
-		setTimeout(setGame, 3000)
+		}, 2000)
+		setTimeout(setGame, 4000)
 	}
 
 }
