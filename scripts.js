@@ -57,8 +57,7 @@ var $diags = [$diag0, $diag1, $diag2, $diag3, $diag4, $diag5, $diag6, $diag7, $d
 var $spots = $(".spot");
 
 var player;
-var player1;
-var player2;
+
 var totalMoves = 0;
 var $buttons = $("button");
 var $findColumn;
@@ -81,7 +80,8 @@ var $playerOrder = $("#player-order");
 var $diceRollGif = $("#dice-roll");
 var $playAgain = $("#play-again-container");
 
-var $currentPlayer = $("current-player");
+var $currentPlayer = $("#current-player");
+var currentPlayerName;
 var $header = $("#header-container");
 
 var $scoreboard = $("#scoreboard-container");
@@ -89,6 +89,12 @@ var $player1score = $("#player1-score");
 var $player2score = $("#player2-score");
 var player1wins = 0;
 var player2wins = 0;
+
+// var player1 = "purple";
+// var player2 = "green";
+
+var player1Color;
+var player2Color;
 
 // ===========================
 // 					Functions
@@ -100,10 +106,12 @@ var initialize = function() {
 	$($spotContainer).hide();
 	$($instructions).hide();
 	$($playerOrderContainer).hide();
+	$($currentPlayer).hide();
 	$($gameOutcomeContainer).hide();
 	$($nameInputContainer).show();
 	$($startButtonContainer).show();
 	$($playAgain).hide();
+	totalMoves = 0;
 	winner = null;
 	for (var i = 0; i < $cols.length; i++) {
 		for (var j = 0; j < $cols[i].length; j++) {
@@ -118,33 +126,36 @@ var initialize = function() {
 
 var playAgainSetup = function() {
 	$($scoreboard).show();
+	$($currentPlayer).html("");
 	initialize();
 	rollDice();
 }
 
 
 var rollDice = function() {
+	$($playerOrder).html("");
+	$($playerOrderContainer).show();
 	$($diceRollGif).show();
 	$($startButtonContainer).hide();
 	$player1Name = $($player1Input).val();
 	$player2Name = $($player2Input).val();
 	$($nameInputContainer).hide();
-	$($playerOrder).html("");
-	$($playerOrderContainer).show();
 	if (Math.random() < 0.5) {
-		player1 = "purple";
-		player2 = "green";
+		player1Color = "purple";
+		player2Color = "green";
+		currentPlayerName = $player1Name;
 		setTimeout(function() {
+			$($playerOrder).html($player1Name + " goes first!");
 			$($diceRollGif).hide();
-			$($playerOrder).html($player1Name + " goes first!")
 		}, 1500)
 		setTimeout(setGame, 3000)
 	} else if (Math.random() < 1) {
-		player1 = "green";
-		player2 = "purple";
+		player1Color = "green";
+		player2Color = "purple";
+		currentPlayerName = $player2Name;
 		setTimeout(function() {
-			$($diceRollGif).hide();
 			$($playerOrder).html($player2Name + " goes first!")
+			$($diceRollGif).hide();
 		}, 1500)
 		setTimeout(setGame, 3000)
 	}
@@ -159,12 +170,12 @@ var setGame = function() {
 	$($instructions).show();
 	$($startButtonContainer).hide();
 	$($playerOrderContainer).hide();
+	$($currentPlayer).show();
+	$($currentPlayer).html(currentPlayerName + "'s turn!");
 }
 
 
 var placeLowestSpot = function() {
-	$findColumn = $(this).siblings()[0];
-	$currentColumn = jQuery.makeArray($($findColumn).children());
 
 	// allows game to alternate turns for players
 	if (totalMoves % 2 === 0) {
@@ -172,6 +183,19 @@ var placeLowestSpot = function() {
 	} else if (totalMoves % 2 === 1) {
 		player = "green";
 	}
+
+	if (currentPlayerName === $player1Name) {
+		currentPlayerName = $player2Name;
+	} else if (currentPlayerName = $player2Name) {
+		currentPlayerName = $player1Name;
+	}
+
+	setTimeout(function() {
+		$($currentPlayer).html(currentPlayerName + "'s turn!");
+	}, 100);
+
+	$findColumn = $(this).siblings()[0];
+	$currentColumn = jQuery.makeArray($($findColumn).children());
 
 	for (var i = ($currentColumn.length - 1); i >= 0; i--) {
 		if (!($($currentColumn[i]).hasClass("purple")) && !($($currentColumn[i]).hasClass("green"))) {
@@ -190,11 +214,11 @@ var placeLowestSpot = function() {
 var checkForWin = function(array) {
 	for (var i = 0; i < array.length; i++) {
 		for (var j = 0; j < (array[i].length - 3); j++) {
-			if ($(array[i][j]).hasClass(player1) && $(array[i][j+1]).hasClass(player1) && $(array[i][j+2]).hasClass(player1) && $(array[i][j+3]).hasClass(player1)) {
-				winner = player1;
+			if ($(array[i][j]).hasClass(player1Color) && $(array[i][j+1]).hasClass(player1Color) && $(array[i][j+2]).hasClass(player1Color) && $(array[i][j+3]).hasClass(player1Color)) {
+				winner = $player1Name;
 				player1wins++;
-			} else if ($(array[i][j]).hasClass(player2) && $(array[i][j+1]).hasClass(player2) && $(array[i][j+2]).hasClass(player2) && $(array[i][j+3]).hasClass(player2)) {
-				winner = player2;
+			} else if ($(array[i][j]).hasClass(player2Color) && $(array[i][j+1]).hasClass(player2Color) && $(array[i][j+2]).hasClass(player2Color) && $(array[i][j+3]).hasClass(player2Color)) {
+				winner = $player2Name;
 				player2wins++;
 			} else if (totalMoves >= 42) {
 				winner = "none";
@@ -208,7 +232,8 @@ var checkForWin = function(array) {
 
 
 var showGameOutcome = function() {
-	if (winner === player1) {
+	if (winner === $player1Name) {
+		$($currentPlayer).hide();
 		$($gameOutcomeContainer).show();
 		$($instructions).hide();
 		$($gameOutcome).html($player1Name + " wins!");
@@ -216,7 +241,8 @@ var showGameOutcome = function() {
 		$($playAgain).show();
 		$($player1score).html($player1Name + ": " + player1wins);
 		$($player2score).html($player2Name + ": " + player2wins);
-	} else if (winner === player2) {
+	} else if (winner === $player2Name) {
+		$($currentPlayer).hide();
 		$($gameOutcomeContainer).show();
 		$($instructions).hide();
 		$($gameOutcome).html($player2Name + " wins!");
@@ -225,6 +251,7 @@ var showGameOutcome = function() {
 		$($player1score).html($player1Name + ": " + player1wins);
 		$($player2score).html($player2Name + ": " + player2wins);
 	} else if (winner === "none") {
+		$($currentPlayer).hide();
 		$($gameOutcomeContainer).show();
 		$($instructions).hide();
 		$($gameOutcome).html("Draw!");

@@ -77,6 +77,7 @@ input {
 	font-size: 50px;
 	font-weight: normal;
 	border-radius: 60px;
+	margin-top: 0px;
 }
 
 #player-order-container {
@@ -113,21 +114,27 @@ input {
 #spot-container {
 	width: 580px;
 	text-align: center;
-	margin: 60px auto 0px auto;
+	margin: 100px auto 0px auto;
 	background-color: rgba(99, 134, 145, 0.9);
-	padding: 50px 0px 20px 0px;
+	padding: 75px 0px 20px 0px;
 	/*border: 5px solid white;*/
 	box-shadow: 0 0 20px #47646E;
 	border-radius: 50px;
 	display: none;
 }
 
-#button-container {
+#current-player {
+	font-size: 30px;
+	color: #ff81bf;
+	animation: colorchange 200ms infinite;
+}
+
+/*#button-container {
 	width: 800px;
 	text-align: center;
 	display: block;
-	margin: 0 auto 0 -75px;
-}
+	margin: 0 auto 0 -95px;
+}*/
 
 button {
 	font-family: "Candice";
@@ -139,7 +146,7 @@ button {
 	width: 50px;
 	border-radius: 100%;
 	border: 3px solid white;
-	margin-top: -30px;
+	margin-top: -50px;
 	margin-bottom: 20px;
 	text-align: center;
 	transition: all 0.7s ease;
@@ -179,10 +186,9 @@ button:hover {
 
 #game-outcome-container {
 	text-align: center;
-	margin: 100px auto 50px auto;
-	font-size: 80px;
-	color: #C636FF;
-	animation-name: blinker;
+	margin: 50px auto;
+	font-size: 100px;
+	color: #cc2477;
 	animation: color_change 150ms 10;
 }
 
@@ -201,8 +207,14 @@ button:hover {
 }
 
 @keyframes color_change {
-	from {color: #ffd295;}
+	from {color: #ff2d95;}
 	to {color: white;}
+
+}
+
+@keyframes colorchange {
+	from {color: #ff2d95;}
+	to {color: #ff81bf;}
 
 }
 
