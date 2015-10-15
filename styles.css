@@ -120,3 +120,15 @@ button {
 	font-weight: 800;
 }
 
+#play-again-container {
+	text-align: center;
+	margin: 0 auto;
+	display: none;
+}
+
+#play-again {
+	height: 70px;
+	width: 200px;
+	font-size: 30px;
+}
+

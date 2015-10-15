@@ -79,6 +79,7 @@ var $player2Name;
 var $playerOrderContainer = $("#player-order-container");
 var $playerOrder = $("#player-order");
 var $diceRollGif = $("#dice-roll");
+var $playAgain = $("#play-again-container");
 
 // ===========================
 // 					Functions
@@ -88,6 +89,10 @@ var initialize = function() {
 	$($spotContainer).hide();
 	$($instructions).hide();
 	$($playerOrderContainer).hide();
+	$($gameOutcomeContainer).hide();
+	$($nameInputContainer).show();
+	$($startButtonContainer).show();
+	$($playAgain).hide();
 	winner = null;
 	for (var i = 0; i < $cols.length; i++) {
 		for (var j = 0; j < $cols[i].length; j++) {
@@ -100,12 +105,6 @@ var initialize = function() {
 	}
 }
 
-var setGame = function() {
-	$($spotContainer).show();
-	$($instructions).show();
-	$($startButtonContainer).hide();
-	$($playerOrderContainer).hide();
-}
 
 var rollDice = function() {
 	$($diceRollGif).show();
@@ -135,6 +134,14 @@ var rollDice = function() {
 }
 
 
+var setGame = function() {
+	$($spotContainer).show();
+	$($instructions).show();
+	$($startButtonContainer).hide();
+	$($playerOrderContainer).hide();
+	$($player1Input).val("");
+	$($player2Input).val("");
+}
 
 
 var placeLowestSpot = function() {
@@ -182,17 +189,23 @@ var checkForWin = function(array) {
 
 var showGameOutcome = function() {
 	if (winner === player1) {
+		$($gameOutcomeContainer).show();
 		$($instructions).hide();
 		$($gameOutcome).html($player1Name + " wins!");
 		$($spotContainer).fadeOut("slow");
+		$($playAgain).show();
 	} else if (winner === player2) {
+		$($gameOutcomeContainer).show();
 		$($instructions).hide();
 		$($gameOutcome).html($player2Name + " wins!");
 		$($spotContainer).fadeOut("slow");
+		$($playAgain).show();
 	} else if (winner === "none") {
+		$($gameOutcomeContainer).show();
 		$($instructions).hide();
 		$($gameOutcome).html("Draw!");
 		$($spotContainer).fadeOut("slow");
+		$($playAgain).show();
 	}
 }
 
@@ -233,3 +246,5 @@ for (var i = 0; i < $buttons.length; i++) {
 $($startButton).click(rollDice);
 
 $(document).ready(initialize);
+
+$($playAgain).click(initialize);
