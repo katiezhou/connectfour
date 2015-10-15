@@ -25,7 +25,6 @@ body {
 	font-style:normal;
 }
 
-
 #header-container {
 	text-align: center;
 	margin: 0 auto;
@@ -36,13 +35,13 @@ body {
 #header1 {
 	text-align: center;
 	font-size: 120px;
-	text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #ff2d95, 0 0 10px #ff2d95, 0 0 20px #ff2d95, 0 0 30px #ff2d95, 0 0 40px #ff2d95; 
+	text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #c9ff00, 0 0 10px #c9ff00, 0 0 10px #c9ff00, 0 0 20px #c9ff00, 0 0 30px #c9ff00; 
 }
 
 #header2 {
 	text-align: center;
 	font-size: 60px;
-	text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #ff2d95, 0 0 4px #ff2d95, 0 0 5px #ff2d95, 0 0 20px #ff2d95, 0 0 20px #ff2d95; 
+	text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #c9ff00, 0 0 4px #c9ff00, 0 0 5px #c9ff00, 0 0 20px #c9ff00, 0 0 20px #c9ff00; 
 	margin-top: -20px;
 }
 
@@ -63,7 +62,7 @@ input {
 	margin: 0 50px;
 	font-family: "Candice";
 	font-size: 25px;
-	color: #ff2d95;
+	color: #cc2477;
 }
 
 #start-button-container {
@@ -84,21 +83,37 @@ input {
 	text-align: center;
 	font-size: 60px;
 	margin: 120px auto 0px auto;
+	color: #cc2477;
 }
 
 #dice-roll {
 	display: none;
 }
 
-#current-player {
+#scoreboard-container {
 	text-align: center;
-	margin: 30px auto 0px auto;
+	position: fixed;
+	left: 50px;
+	top: 30px;
+	width: 250px;
+	height: 100px;
+	box-shadow: 0 0 20px #47646E;
+	border-radius: 90px;
+	background-color: rgba(99, 134, 145, 0.8);
+	color: white;
+	display: none;
+	font-size: 22px;
+}
+
+#scoreboard-header {
+	font-size: 35px;
+	margin-top: 5px;
 }
 
 #spot-container {
 	width: 580px;
 	text-align: center;
-	margin: 150px auto 0px auto;
+	margin: 60px auto 0px auto;
 	background-color: rgba(99, 134, 145, 0.9);
 	padding: 50px 0px 20px 0px;
 	/*border: 5px solid white;*/
@@ -150,13 +165,13 @@ button:hover {
 	margin: 5px;
 }
 
-.red {
+.purple {
 	background-image: url(purplepeppermint-background.png);
 	background-size: cover;
 	border: 2px solid white;
 }
 
-.blue {
+.green {
 	background-image: url(greenpeppermint-background.png);
 	background-size: cover;
 	border: 2px solid white;
@@ -166,6 +181,9 @@ button:hover {
 	text-align: center;
 	margin: 100px auto 50px auto;
 	font-size: 80px;
+	color: #C636FF;
+	animation-name: blinker;
+	animation: color_change 150ms 10;
 }
 
 #play-again-container {
@@ -183,7 +201,7 @@ button:hover {
 }
 
 @keyframes color_change {
-	from {color: #ff2d95;}
+	from {color: #ffd295;}
 	to {color: white;}
 
 }

@@ -2,7 +2,6 @@
 <head>
 	<title>Play Connect Four!</title>
 	<link rel="stylesheet" type="text/css" href="styles.css">
-	<link rel="stylesheet" type="text/css" href="candicefont.css">
 	<script type="text/javascript" src="jquery.js"></script>
 </head>
 <body>
@@ -22,7 +21,13 @@
 		<div id="player-order"></div>
 		<img id="dice-roll"src="diceroll.gif">
 	</div>
-	<div id="current-player"></div>
+	<div id="scoreboard-container">
+		<div id="scoreboard">
+			<div id="scoreboard-header">Scoreboard</div>
+			<div id="player1-score"></div>
+			<div id="player2-score"></div>
+		</div>
+	</div>
 	<div id="spot-container">
 		<div class="column-container">
 			<button>&darr;</button>
@@ -109,6 +114,7 @@
 	</div>
 	<div id="game-outcome-container">
 		<div id="game-outcome"></div>
+		<div id="score-count"></div>
 	</div>
 	<div id="play-again-container">
 		<button id="play-again">Play again!</button>

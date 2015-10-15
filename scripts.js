@@ -81,11 +81,22 @@ var $playerOrder = $("#player-order");
 var $diceRollGif = $("#dice-roll");
 var $playAgain = $("#play-again-container");
 
+var $currentPlayer = $("current-player");
+var $header = $("#header-container");
+
+var $scoreboard = $("#scoreboard-container");
+var $player1score = $("#player1-score");
+var $player2score = $("#player2-score");
+var player1wins = 0;
+var player2wins = 0;
+
 // ===========================
 // 					Functions
 // ===========================
 
 var initialize = function() {
+	$($($header).children()[0]).css("font-size", "120px");
+	$($($header).children()[1]).css("font-size", "60px");
 	$($spotContainer).hide();
 	$($instructions).hide();
 	$($playerOrderContainer).hide();
@@ -96,13 +107,19 @@ var initialize = function() {
 	winner = null;
 	for (var i = 0; i < $cols.length; i++) {
 		for (var j = 0; j < $cols[i].length; j++) {
-			if ($($cols[i][j]).hasClass("red")) {
-				$($cols[i][j]).removeClass("red");
-			} else if ($($cols[i][j]).hasClass("blue")) {
-				$($cols[i][j]).removeClass("blue");
+			if ($($cols[i][j]).hasClass("purple")) {
+				$($cols[i][j]).removeClass("purple");
+			} else if ($($cols[i][j]).hasClass("green")) {
+				$($cols[i][j]).removeClass("green");
 			}
 		}
 	}
+}
+
+var playAgainSetup = function() {
+	$($scoreboard).show();
+	initialize();
+	rollDice();
 }
 
 
@@ -112,18 +129,19 @@ var rollDice = function() {
 	$player1Name = $($player1Input).val();
 	$player2Name = $($player2Input).val();
 	$($nameInputContainer).hide();
+	$($playerOrder).html("");
 	$($playerOrderContainer).show();
 	if (Math.random() < 0.5) {
-		player1 = "red";
-		player2 = "blue";
+		player1 = "purple";
+		player2 = "green";
 		setTimeout(function() {
 			$($diceRollGif).hide();
 			$($playerOrder).html($player1Name + " goes first!")
 		}, 1500)
 		setTimeout(setGame, 3000)
 	} else if (Math.random() < 1) {
-		player1 = "blue";
-		player2 = "red";
+		player1 = "green";
+		player2 = "purple";
 		setTimeout(function() {
 			$($diceRollGif).hide();
 			$($playerOrder).html($player2Name + " goes first!")
@@ -135,12 +153,12 @@ var rollDice = function() {
 
 
 var setGame = function() {
+	$($($header).children()[0]).css("font-size", "72px");
+	$($($header).children()[1]).css("font-size", "36px");
 	$($spotContainer).show();
 	$($instructions).show();
 	$($startButtonContainer).hide();
 	$($playerOrderContainer).hide();
-	$($player1Input).val("");
-	$($player2Input).val("");
 }
 
 
@@ -150,13 +168,13 @@ var placeLowestSpot = function() {
 
 	// allows game to alternate turns for players
 	if (totalMoves % 2 === 0) {
-		player = "red";
+		player = "purple";
 	} else if (totalMoves % 2 === 1) {
-		player = "blue";
+		player = "green";
 	}
 
 	for (var i = ($currentColumn.length - 1); i >= 0; i--) {
-		if (!($($currentColumn[i]).hasClass("red")) && !($($currentColumn[i]).hasClass("blue"))) {
+		if (!($($currentColumn[i]).hasClass("purple")) && !($($currentColumn[i]).hasClass("green"))) {
 			lowestSpot = i;
 			$($currentColumn[i]).addClass(player);
 			totalMoves += 1;
@@ -174,8 +192,10 @@ var checkForWin = function(array) {
 		for (var j = 0; j < (array[i].length - 3); j++) {
 			if ($(array[i][j]).hasClass(player1) && $(array[i][j+1]).hasClass(player1) && $(array[i][j+2]).hasClass(player1) && $(array[i][j+3]).hasClass(player1)) {
 				winner = player1;
+				player1wins++;
 			} else if ($(array[i][j]).hasClass(player2) && $(array[i][j+1]).hasClass(player2) && $(array[i][j+2]).hasClass(player2) && $(array[i][j+3]).hasClass(player2)) {
 				winner = player2;
+				player2wins++;
 			} else if (totalMoves >= 42) {
 				winner = "none";
 			}
@@ -194,18 +214,24 @@ var showGameOutcome = function() {
 		$($gameOutcome).html($player1Name + " wins!");
 		$($spotContainer).fadeOut("slow");
 		$($playAgain).show();
+		$($player1score).html($player1Name + ": " + player1wins);
+		$($player2score).html($player2Name + ": " + player2wins);
 	} else if (winner === player2) {
 		$($gameOutcomeContainer).show();
 		$($instructions).hide();
 		$($gameOutcome).html($player2Name + " wins!");
 		$($spotContainer).fadeOut("slow");
 		$($playAgain).show();
+		$($player1score).html($player1Name + ": " + player1wins);
+		$($player2score).html($player2Name + ": " + player2wins);
 	} else if (winner === "none") {
 		$($gameOutcomeContainer).show();
 		$($instructions).hide();
 		$($gameOutcome).html("Draw!");
 		$($spotContainer).fadeOut("slow");
 		$($playAgain).show();
+		$($player1score).html($player1Name + ": " + player1wins);
+		$($player2score).html($player2Name + ": " + player2wins);
 	}
 }
 
@@ -247,4 +273,4 @@ $($startButton).click(rollDice);
 
 $(document).ready(initialize);
 
-$($playAgain).click(initialize);
+$($playAgain).click(playAgainSetup);
