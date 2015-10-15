@@ -15,6 +15,7 @@ body {
 	background-repeat: no-repeat;
 	background-size: cover;
     background-attachment: fixed;
+    color: #ff2d95;
 }
 
 @font-face {
@@ -48,7 +49,7 @@ body {
 #instructions {
 	font-size: 30px;
 	display: none;
-	color: #ff2d95;
+	color: #cc2477;
 }
 
 #name-input-container {
@@ -62,6 +63,7 @@ input {
 	margin: 0 50px;
 	font-family: "Candice";
 	font-size: 25px;
+	color: #ff2d95;
 }
 
 #start-button-container {
@@ -75,6 +77,7 @@ input {
 	height: 80px;
 	font-size: 50px;
 	font-weight: normal;
+	border-radius: 60px;
 }
 
 #player-order-container {
@@ -98,7 +101,9 @@ input {
 	margin: 150px auto 0px auto;
 	background-color: rgba(99, 134, 145, 0.9);
 	padding: 50px 0px 20px 0px;
-	border: 5px solid black;
+	/*border: 5px solid white;*/
+	box-shadow: 0 0 20px #47646E;
+	border-radius: 50px;
 	display: none;
 }
 
@@ -117,11 +122,16 @@ button {
 	background-color: #ff2d95;
 	height: 50px;
 	width: 50px;
-	border-radius: 5px;
+	border-radius: 100%;
 	border: 3px solid white;
 	margin-top: -30px;
 	margin-bottom: 20px;
 	text-align: center;
+	transition: all 0.7s ease;
+}
+
+button:hover {
+	background-color: #ff96ca;
 }
 
 .column-container {
@@ -132,20 +142,24 @@ button {
 .spot {
 	height: 60px;
 	width: 60px;
-	background-color: #facade;
+	background-color: #ffd5e9;
 	border-radius: 100%;
 	box-shadow: 0 0 20px #47646E;
-	border: 3px solid black;
+	border: 2px solid black;
 	display: inline-block;
 	margin: 5px;
 }
 
 .red {
-	background-color: #FC4807;
+	background-image: url(purplepeppermint-background.png);
+	background-size: cover;
+	border: 2px solid white;
 }
 
 .blue {
-	background-color: #07bbfc;
+	background-image: url(greenpeppermint-background.png);
+	background-size: cover;
+	border: 2px solid white;
 }
 
 #game-outcome-container {
@@ -165,5 +179,12 @@ button {
 	height: 70px;
 	font-size: 35px;
 	font-weight: normal;
+	border-radius: 50px;
+}
+
+@keyframes color_change {
+	from {color: #ff2d95;}
+	to {color: white;}
+
 }
 
