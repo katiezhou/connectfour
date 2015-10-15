@@ -62,6 +62,8 @@ input {
 	font-family: "Candice";
 	font-size: 25px;
 	color: #cc2477;
+	border-radius: 15px;
+	border: none;
 }
 
 #start-button-container {
