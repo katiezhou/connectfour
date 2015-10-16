@@ -96,7 +96,7 @@ var player1wins = 0;
 var player2wins = 0;
 var $player1score = $("#player1-score");
 var $player2score = $("#player2-score");
-var $playAgain = $("#play-again");
+var $playAgain = $("#play-again-container");
 
 // ===========================
 // 					Functions
@@ -203,7 +203,7 @@ var placeLowestSpot = function() {
 		currentPlayerName = $player1Name;
 	}
 
-	if (totalMoves < 9) {
+	if (totalMoves < 42 && winner === null) {
 		setTimeout(function() {
 			$($currentPlayer).html(currentPlayerName + "'s turn!");
 		}, 100);
@@ -226,10 +226,10 @@ var placeLowestSpot = function() {
 				checkForWin($cols);
 				checkForWin($diags);
 				break;
-			}
-		} else {
+			} else {
 			null;
-		}
+			}
+		} 
 	}
 	
 }
