@@ -191,16 +191,17 @@ var setGame = function() {
 
 // checks for lowest free column spot and adds the class of the player whose turn it is
 var placeLowestSpot = function() {
+	if (currentPlayerName === $player1Name) {
+		currentPlayerName = $player2Name;
+	} else if (currentPlayerName === $player2Name) {
+		currentPlayerName = $player1Name;
+	} 
+
 	// allows game to alternate turns for players
 	if (totalMoves % 2 === 0) {
 		player = "purple";
 	} else if (totalMoves % 2 === 1) {
 		player = "green";
-	}
-	if (currentPlayerName === $player1Name) {
-		currentPlayerName = $player2Name;
-	} else if (currentPlayerName = $player2Name) {
-		currentPlayerName = $player1Name;
 	}
 
 	if (totalMoves < 42 && winner === null) {
@@ -240,10 +241,10 @@ var checkForWin = function(array) {
 		for (var j = 0; j < (array[i].length - 3); j++) {
 			if ($(array[i][j]).hasClass(player1Color) && $(array[i][j+1]).hasClass(player1Color) && $(array[i][j+2]).hasClass(player1Color) && $(array[i][j+3]).hasClass(player1Color)) {
 				winner = $player1Name;
-				player1wins++;
+				player1wins += 1;
 			} else if ($(array[i][j]).hasClass(player2Color) && $(array[i][j+1]).hasClass(player2Color) && $(array[i][j+2]).hasClass(player2Color) && $(array[i][j+3]).hasClass(player2Color)) {
 				winner = $player2Name;
-				player2wins++;
+				player2wins += 1;
 			} else if (totalMoves >= 42) {
 				winner = "none";
 			}
