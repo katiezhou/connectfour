@@ -88,6 +88,9 @@ var createBoard = function(columns, rows) {
 	for (var i = 0; i < $spotButtons.length; i++) {
 		$($spotButtons[i]).click(placeLowestSpot);
 	}
+
+	var $columnElements = $(".column");
+	$($spotContainer).width(($columnElements.length * 70) + 90);
 	populateArrays();
 
 }
@@ -257,7 +260,7 @@ var placeLowestSpot = function() {
 		} 
 	}
 	
-}
+}  
 
 var checkForWin = function() {
 	rowColumnWinCheck(rows);
@@ -293,7 +296,7 @@ var rowColumnWinCheck = function(array) {
 // takes the row array as an argument because of the way the rows array visually matches the gameboard
 // 2 for loops - one for each "direction" of diagonals
 var diagonalWinCheck = function(array) {
-	var $createColumn = $(".column");
+	$createColumn = $(".column");
 	for (var b = 0; b < ($createColumn[0].children.length - 3); b++) {
 		for (var c = 0; c < ($createColumn.length - 3); c++) {
 
