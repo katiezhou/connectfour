@@ -305,7 +305,7 @@ var diagonalWinCheck = function(array) {
 				player1wins += 1;
 			} else if ($(array[b][c]).hasClass(player2Color) && $(array[b + 1][c + 1]).hasClass(player2Color) && $(array[b + 2][c + 2]).hasClass(player2Color) && $(array[b + 3][c + 3]).hasClass(player2Color)) {
 				winner = $player2Name;
-				player1wins += 2;
+				player1wins += 1;
 			} else if (totalMoves >= 42) {
 				winner = "none";
 			}
@@ -318,7 +318,7 @@ var diagonalWinCheck = function(array) {
 				player1wins += 1;
 			} else if ($(array[b][c]).hasClass(player2Color) && $(array[b + 1][d - 1]).hasClass(player2Color) && $(array[b + 2][d - 2]).hasClass(player2Color) && $(array[b + 3][d - 3]).hasClass(player2Color)) {
 				winner = $player2Name;
-				player1wins += 2;
+				player1wins += 1;
 			} else if (totalMoves >= 42) {
 				winner = "none";
 			}
