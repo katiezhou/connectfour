@@ -311,7 +311,7 @@ var diagonalWinCheck = function(array) {
 			}
 		}
 
-		for (var d = ($createColumn[0].children.length - 1); d >= 3; d--) {
+		for (var d = ($createColumn.length - 1); d >= 3; d--) {
 
 			if ($(array[b][d]).hasClass(player1Color) && $(array[b + 1][d - 1]).hasClass(player1Color) && $(array[b + 2][d - 2]).hasClass(player1Color) && $(array[b + 3][d - 3]).hasClass(player1Color)) {
 				winner = $player1Name;
@@ -325,6 +325,29 @@ var diagonalWinCheck = function(array) {
 		}
 	}
 }
+
+// var diagonalWinCheck = function(array) {
+// 	$createColumn = $(".column");
+// 	for (var b = 0; b < ($createColumn[0].children.length - 3); b++) {
+// 		for (var c = 0; c < ($createColumn.length - 3); c++) {
+
+// 			console.log($(array[b][c])) 
+// 			console.log($(array[b + 1][c + 1]))
+// 			console.log($(array[b + 2][c + 2]))
+// 			console.log($(array[b + 3][c + 3]))
+				
+// 		}
+
+// 		for (var d = ($createColumn.length - 1); d >= 3; d--) {
+
+// 			console.log($(array[b][d]))
+// 			console.log($(array[b + 1][d - 1]))
+// 			console.log($(array[b + 2][d - 2]))
+// 			console.log($(array[b + 3][d - 3]))
+// 		}
+// 	}
+// }
+
 
 
 // things that happen once a winner is found
